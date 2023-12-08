@@ -11,9 +11,10 @@ const app = express();
 // MIDDLEWARE
 app.use(bodyParser.json());  // Parse JSON from the request body
 app.use(cors({
-  credentials: true,
-  origin: '*' // This means that only requests coming from the frontend will be allowed
-}));
+    credentials: true,
+    origin: 'https://text-summary-alpha.vercel.app' // Update this to the actual frontend URL
+  }));
+  
 
 //CONNECT TO MONGODB
 mongoose.connect(process.env.MONGO_URL)
