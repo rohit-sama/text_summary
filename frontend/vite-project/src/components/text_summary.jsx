@@ -15,6 +15,7 @@ function TextSummarizer() {
         return;
       }
       setLoading(true);
+      setHistoryData(null);
       const response = await axios.post(
         "https://text-summary-gfa2-rohit-sama.vercel.app/summarize-text/v2",
         {
@@ -90,7 +91,7 @@ function TextSummarizer() {
         <div className="text-gray-400 mt-3">Loading...</div>
       ) : historyData ? (
         <div>
-          <h2 className="text-lg text-gray-200">History Data:</h2>
+          <h2 className="text-3xl mt-10 text-gray-200">History Data:</h2>
         </div>
       ) : (
         <div className="text-gray-400 mt-3">{summary.summary}</div>
@@ -101,10 +102,10 @@ function TextSummarizer() {
           <div>
             {historyData.map((item, index) => (
               <div key={index}>
-                <p className="mt-20">
+                <p className="mt-20 text-gray-200">
                   <strong>Text:</strong> {item.text}
                 </p>
-                <p className="mt-5">
+                <p className="mt-5 text-gray-800">
                   <strong>Summary:</strong> {item.summary}
                 </p>
               </div>
