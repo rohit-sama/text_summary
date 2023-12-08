@@ -102,10 +102,10 @@ function TextSummarizer() {
           <div>
             {historyData.map((item, index) => (
               <div key={index}>
-                <p className="mt-20 text-gray-200">
+                <p className="mt-20 text-gray-400">
                   <strong>Text:</strong> {item.text}
                 </p>
-                <p className="mt-5 text-gray-800">
+                <p className="mt-5 text-gray-200">
                   <strong>Summary:</strong> {item.summary}
                 </p>
               </div>
