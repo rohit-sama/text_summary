@@ -11,13 +11,12 @@ The Text Summary is a service designed to summarize text content using the Coher
 
 ## Technologies Used
 
+- React.js
 - Node.js
 - Express.js
+- Tailwindcss
 - MongoDB (Mongoose ORM)
-- Axios
 - Cohere AI API
-- CORS
-- dotenv
 
 ## ScreenshotS
 ![image](https://github.com/rohit-sama/text_summary/assets/112627630/7570d8b1-ed03-4d82-959b-a001cc6c6eed)
