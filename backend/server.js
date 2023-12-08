@@ -11,10 +11,9 @@ const app = express();
 // MIDDLEWARE
 app.use(bodyParser.json());  // Parse JSON from the request body
 app.use(cors({
-    credentials: true,
-    origin: 'https://text-summary-alpha.vercel.app' // Update this to the actual frontend URL
-  }));
-  
+  credentials: true,
+  origin: '*' // This means that only requests coming from the frontend will be allowed
+}));
 
 //CONNECT TO MONGODB
 mongoose.connect(process.env.MONGO_URL)
@@ -60,11 +59,6 @@ mongoose.connect(process.env.MONGO_URL)
         response: response.data
       });
       await apiData.save();
-       // Set CORS headers for the response
-    res.setHeader('Access-Control-Allow-Origin', 'https://text-summary-alpha.vercel.app');
-    res.setHeader('Access-Control-Allow-Methods', 'GET');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
       res.json(response.data);
       console.log(response.data);
     } catch (error) {
@@ -76,11 +70,6 @@ mongoose.connect(process.env.MONGO_URL)
   app.get('/api-data', async (req, res) => {
     try {
       const allData = await ApiData.find({}); // Fetch all documents from the collection
-       // Set CORS headers for the response
-    res.setHeader('Access-Control-Allow-Origin', 'https://text-summary-alpha.vercel.app');
-    res.setHeader('Access-Control-Allow-Methods', 'GET');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
       res.json(allData); // Send all data as a JSON response
     } catch (error) {
       console.error(error);
@@ -89,21 +78,15 @@ mongoose.connect(process.env.MONGO_URL)
   });
 
   app.delete('/clear-history', async (req, res) => {
-    try {
-      // Remove all documents from the ApiData collection
-      await ApiData.deleteMany({});
-
-       // Set CORS headers for the response
-    res.setHeader('Access-Control-Allow-Origin', 'https://text-summary-alpha.vercel.app');
-    res.setHeader('Access-Control-Allow-Methods', 'GET');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-      res.status(200).json({ message: 'History data cleared successfully' });
-    } catch (error) {
-      console.error('Error clearing history:', error);
-      res.status(500).json({ error: 'An error occurred while clearing history data' });
-    }
-  });
+  try {
+    // Remove all documents from the ApiData collection
+    await ApiData.deleteMany({});
+    res.status(200).json({ message: 'History data cleared successfully' });
+  } catch (error) {
+    console.error('Error clearing history:', error);
+    res.status(500).json({ error: 'An error occurred while clearing history data' });
+  }
+});
 
   app.listen(4002, () => {
     console.log('Server running on port 4002');

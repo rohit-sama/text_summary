@@ -16,7 +16,7 @@ function TextSummarizer() {
       }
       setLoading(true);
       const response = await axios.post(
-        "https://text-summary-gfa2-rohit-sama.vercel.app//summarize-text/v2",
+        "https://text-summary-gfa2-rohit-sama.vercel.app/summarize-text/v2",
         {
           text: inputText,
         }
@@ -31,7 +31,7 @@ function TextSummarizer() {
 
   const handleTextHistory = async () => {
     try {
-      const response = await axios.get("https://text-summary-gfa2-rohit-sama.vercel.app//api-data"); // Fetching history data
+      const response = await axios.get("https://text-summary-gfa2-rohit-sama.vercel.app/api-data"); // Fetching history data
 
       const extractedData = response.data.map((item) => ({
         text: item.text,
@@ -47,7 +47,7 @@ function TextSummarizer() {
   const handleClearHistory = async () => {
     try {
       setLoading(true);
-      await axios.delete("https://text-summary-gfa2-rohit-sama.vercel.app//clear-history");
+      await axios.delete("https://text-summary-gfa2-rohit-sama.vercel.app/clear-history");
       setLoading(false);
       // Update or clear the state that holds the history data if needed
       setHistoryData();
