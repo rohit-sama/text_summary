@@ -44,8 +44,8 @@ mongoose.connect(process.env.MONGO_URL)
         authorization: `Bearer ${process.env.COHERE_API_KEY}` // Replace with your actual API key from environment variables
       },
       data: {
-        length:  'medium',
-        format:  'paragraph',
+        length:  'short',
+        format:  'auto',
         extractiveness:  'low',
         temperature: 0.3,
         text: text || ''
