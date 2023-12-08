@@ -60,6 +60,11 @@ mongoose.connect(process.env.MONGO_URL)
         response: response.data
       });
       await apiData.save();
+       // Set CORS headers for the response
+    res.setHeader('Access-Control-Allow-Origin', 'https://text-summary-alpha.vercel.app');
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
       res.json(response.data);
       console.log(response.data);
     } catch (error) {
@@ -71,6 +76,11 @@ mongoose.connect(process.env.MONGO_URL)
   app.get('/api-data', async (req, res) => {
     try {
       const allData = await ApiData.find({}); // Fetch all documents from the collection
+       // Set CORS headers for the response
+    res.setHeader('Access-Control-Allow-Origin', 'https://text-summary-alpha.vercel.app');
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
       res.json(allData); // Send all data as a JSON response
     } catch (error) {
       console.error(error);
@@ -82,6 +92,12 @@ mongoose.connect(process.env.MONGO_URL)
     try {
       // Remove all documents from the ApiData collection
       await ApiData.deleteMany({});
+
+       // Set CORS headers for the response
+    res.setHeader('Access-Control-Allow-Origin', 'https://text-summary-alpha.vercel.app');
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
       res.status(200).json({ message: 'History data cleared successfully' });
     } catch (error) {
       console.error('Error clearing history:', error);
