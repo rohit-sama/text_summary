@@ -1,6 +1,6 @@
-# Text Summary API
+# Text Summary
 
-The Text Summary API is a service designed to summarize text content using the Cohere AI summarization model. This API provides endpoints for text summarization, storing summarized data, retrieving historical data, and clearing the stored history.
+The Text Summary is a service designed to summarize text content using the Cohere AI summarization model. This API provides endpoints for text summarization, storing summarized data, retrieving historical data, and clearing the stored history.
 
 ## Features
 
